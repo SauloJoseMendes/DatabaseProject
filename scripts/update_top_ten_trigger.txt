@@ -1,0 +1,38 @@
+create or replace function update_top_ten() returns trigger
+           language plpgsql
+           as $$
+           declare
+                  playlist_id_variable BIGINT;
+
+          c1 cursor for
+                SELECT song_ismn, COUNT(*) AS count
+                FROM listening_history
+                WHERE consumer_slayfy_user_user_id = NEW.consumer_slayfy_user_user_id
+                AND EXTRACT(MONTH FROM listening_time) = EXTRACT(MONTH FROM CURRENT_TIMESTAMP) 
+                AND EXTRACT(YEAR FROM listening_time) = EXTRACT(YEAR FROM CURRENT_TIMESTAMP)
+                GROUP BY song_ismn
+                ORDER BY count DESC
+                LIMIT 10;
+
+            begin
+
+                SELECT playlist_id
+                INTO playlist_id_variable
+                FROM playlist
+                WHERE consumer_slayfy_user_user_id = NEW.consumer_slayfy_user_user_id
+
+                AND by_system = TRUE;
+
+                DELETE FROM song_playlist
+                WHERE playlist_playlist_id = playlist_id_variable;
+
+                for r in c1
+                loop
+                    insert into song_playlist(song_ismn, playlist_playlist_id) values(r.song_ismn, playlist_id_variable);
+                end loop;
+                RETURN NEW;
+            end;
+
+            $$;
+            CREATE TRIGGER update_top_ten AFTER INSERT ON listening_history FOR EACH ROW 
+             EXECUTE FUNCTION update_top_ten()

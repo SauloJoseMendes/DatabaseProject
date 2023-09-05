@@ -1,0 +1,593 @@
+{
+	"info": {
+		"_postman_id": "d80f13a1-688c-4816-a2f6-27da70a005f0",
+		"name": "Projeto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27348991"
+	},
+	"item": [
+		{
+			"name": "ADD_USER",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authentication",
+						"value": "",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\":\"joana\", \"password\":\"1234\", \"mail\":\"joana@gmail.com\", \"artist_permit\":\"False\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/slayfy/slayfy_user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"slayfy",
+						"slayfy_user"
+					]
+				},
+				"description": "Add a user of type consumer. You should not be authenticated (empty authentication field), and you should add to the payload the fields \"username\", \"password\", \"mail\" and \"artist_permit\":\"False\""
+			},
+			"response": []
+		},
+		{
+			"name": "LOG IN",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authentication",
+						"value": "",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\":\"Pedro\", \"password\":\"1234\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/slayfy/slayfy_user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"slayfy",
+						"slayfy_user"
+					]
+				},
+				"description": "Log in by inserting your username and password and receive an authentication token in case of success"
+			},
+			"response": []
+		},
+		{
+			"name": "ADD_ARTIST",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authentication",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInVzZXJuYW1lIjoiUGVkcm8iLCJhZG1pbl9wZXJtaXQiOnRydWUsImFydGlzdF9wZXJtaXQiOmZhbHNlfQ.-CzFXQ7SRA4Ll1fUd_Z6_HGh73A3ajG1l_zXkHPEIxc",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\": \"stefani\", \"password\": \"1234\", \"mail\":\"gaga@gmail.com\", \"artist_permit\":\"True\", \"artistic_name\":\"lady gaga\", \"genre\":\"pop\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/slayfy/slayfy_user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"slayfy",
+						"slayfy_user"
+					]
+				},
+				"description": "Add a user of type artist. You should be authenticated as an admin and insert in the payload the fields \"username\", \"password\", \"mail\", \"artist_permit\":\"True\", \"artistic_name\" and \"genre\""
+			},
+			"response": []
+		},
+		{
+			"name": "ADD_SONG",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authentication",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInVzZXJuYW1lIjoic3RlZmFuaSIsImFkbWluX3Blcm1pdCI6ZmFsc2UsImFydGlzdF9wZXJtaXQiOnRydWV9.LHt3FSIBLVhgdChCrvYl2YaZQztFaZw7S1F-xs_uUaY",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"title\":\"bad romance\", \"release_date\":\"2009-10-19\", \"genre\":\"pop\", \"publisher\":\"1\", \"other_artists\":[7,9]}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/slayfy/song",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"slayfy",
+						"song"
+					]
+				},
+				"description": "Release a new song. You should be authenticated as an artist (the song will be automatically associated to the artist you are authenticated as), and you should insert into the payload the fields \"title\", \"release date\", \"genre\", \"publisher\" and \"other_artists\"."
+			},
+			"response": []
+		},
+		{
+			"name": "ADD_ALBUM",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authentication",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidXNlcm5hbWUiOiJtaXRza2kiLCJhZG1pbl9wZXJtaXQiOmZhbHNlLCJhcnRpc3RfcGVybWl0Ijp0cnVlfQ.7Cq32FSNcb9L6ruwV9GJO0u1Hanghj7ycI01bFItvpI",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"title\": \"Mitski Debut\", \"release_date\":\"2023-05-17\", \"publisher\":\"1\", \"songs\":[\"1\", \"2\", {\"title\":\"nobody\", \"release_date\":\"2023-05-17\", \"genre\":\"indie pop\", \"publisher\":\"1\", \"other_artists\":[\"9\"]}, \"4\"]}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/slayfy/album",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"slayfy",
+						"album"
+					]
+				},
+				"description": "Add a new album. You should be authenticated as an artist (the album will be automatically associated with the artist you are authenticated as) and you should insert the fields \"title\", \"release_date\", \"genre\", \"publisher\" and \"songs\": \\[existing_song1_id, {fields to create a new song}, existing_song2_id\\]"
+			},
+			"response": []
+		},
+		{
+			"name": "SEARCH_SONG",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authentication",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidXNlcm5hbWUiOiJtaXRza2kiLCJhZG1pbl9wZXJtaXQiOmZhbHNlLCJhcnRpc3RfcGVybWl0Ijp0cnVlfQ.7Cq32FSNcb9L6ruwV9GJO0u1Hanghj7ycI01bFItvpI",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/slayfy/song/bad",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"slayfy",
+						"song",
+						"bad"
+					]
+				},
+				"description": "Search for songs in the database with a given keyword in the title. You should be authenticated."
+			},
+			"response": []
+		},
+		{
+			"name": "DETAIL_ARTIST",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authentication",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidXNlcm5hbWUiOiJtaXRza2kiLCJhZG1pbl9wZXJtaXQiOmZhbHNlLCJhcnRpc3RfcGVybWl0Ijp0cnVlfQ.7Cq32FSNcb9L6ruwV9GJO0u1Hanghj7ycI01bFItvpI",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/slayfy/artist/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"slayfy",
+						"artist",
+						"7"
+					]
+				},
+				"description": "Search for information on a given artist. You should be authenticated."
+			},
+			"response": []
+		},
+		{
+			"name": "SUBSCRIBE_TO_PREMIUM",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authentication",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsInVzZXJuYW1lIjoiYW5hX3BhdWxhIiwiYWRtaW5fcGVybWl0IjpmYWxzZSwiYXJ0aXN0X3Blcm1pdCI6ZmFsc2V9.4wExrDfcK4vdKtDtiBk4Hb5tBK3mX81Pn2EDmYDDzCE",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"period\":\"1\", \"cards\": [\"8307661276541390\"]}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/slayfy/subscription",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"slayfy",
+						"subscription"
+					]
+				},
+				"description": "Create a new subscription. You should be authenticated as a consumer. You should add the fields \"period\" with either the value 1 (month), 3 (quarter) or 6 (semester) and \"cards\" with the ids of the cards you wish to use in the purchase."
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE_PLAYLIST",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authentication",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJjYXRhcmluYSIsImFkbWluX3Blcm1pdCI6ZmFsc2UsImFydGlzdF9wZXJtaXQiOmZhbHNlfQ.ji3CxAgPlw2KOe_tTa_mumeQl2v7Tgrz5LkbdzO8l7I",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"title\":\"favourite songs\", \"public\":\"True\", \"description\":\"my favourite songs\", \"songs\":[1,2,3,4,9]}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/slayfy/playlist",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"slayfy",
+						"playlist"
+					]
+				},
+				"description": "Create a playlist. You should be authenticated as a consumer. Only premium consumers can make private playlists."
+			},
+			"response": []
+		},
+		{
+			"name": "PLAY_SONG",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authentication",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJjYXRhcmluYSIsImFkbWluX3Blcm1pdCI6ZmFsc2UsImFydGlzdF9wZXJtaXQiOmZhbHNlfQ.ji3CxAgPlw2KOe_tTa_mumeQl2v7Tgrz5LkbdzO8l7I",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/slayfy/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"slayfy",
+						"2"
+					]
+				},
+				"description": "\"Play\" a song and add it to the listening history. You should be authenticated as a consumer."
+			},
+			"response": []
+		},
+		{
+			"name": "GENERATE_PREPAID_CARD",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authentication",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInVzZXJuYW1lIjoiUGVkcm8iLCJhZG1pbl9wZXJtaXQiOnRydWUsImFydGlzdF9wZXJtaXQiOmZhbHNlfQ.-CzFXQ7SRA4Ll1fUd_Z6_HGh73A3ajG1l_zXkHPEIxc",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"number_cards\":\"4\", \"original_value\":\"25\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/slayfy/card",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"slayfy",
+						"card"
+					]
+				},
+				"description": "Generate a set number of pre-paid cards, all with a given value (between 10, 25 or 30). You should be authenticated as an admin."
+			},
+			"response": []
+		},
+		{
+			"name": "LEAVE COMMENT",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authentication",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsInVzZXJuYW1lIjoiYW5hX3BhdWxhIiwiYWRtaW5fcGVybWl0IjpmYWxzZSwiYXJ0aXN0X3Blcm1pdCI6ZmFsc2V9.4wExrDfcK4vdKtDtiBk4Hb5tBK3mX81Pn2EDmYDDzCE",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"content\": \"this is the best song I've ever heard!\", \"rating\":\"5\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/slayfy/comment/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"slayfy",
+						"comment",
+						"5"
+					]
+				},
+				"description": "Leave a comment on a song with a given content and, optionally, a rating (from 1 to 5). You should be authenticated as a consumer."
+			},
+			"response": []
+		},
+		{
+			"name": "LEAVE REPLY",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authentication",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsInVzZXJuYW1lIjoiYW5hX3BhdWxhIiwiYWRtaW5fcGVybWl0IjpmYWxzZSwiYXJ0aXN0X3Blcm1pdCI6ZmFsc2V9.4wExrDfcK4vdKtDtiBk4Hb5tBK3mX81Pn2EDmYDDzCE",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"content\": \"I disagree, I think it's terrible\", \"rating\":\"1\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/slayfy/comment/5/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"slayfy",
+						"comment",
+						"5",
+						"1"
+					]
+				},
+				"description": "Reply to a given comment on a song and, optionally, leave a rating (from 1 to 5). You should be authenticated as a consumer."
+			},
+			"response": []
+		},
+		{
+			"name": "GET_MONTHLY_REPORT",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authentication",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJjYXRhcmluYSIsImFkbWluX3Blcm1pdCI6ZmFsc2UsImFydGlzdF9wZXJtaXQiOmZhbHNlfQ.WJug3tvBKCdyG__8TNMeL-KpSBOXYXcjLAHpnaZoSyI",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/slayfy/listening_history/2023-05",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"slayfy",
+						"listening_history",
+						"2023-05"
+					]
+				},
+				"description": "Get monthly report of songs listened to by consumer, per month and per genre, in the past 12 months. You should be authenticated as a consumer"
+			},
+			"response": []
+		}
+	]
+}

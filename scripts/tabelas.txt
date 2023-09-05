@@ -1,0 +1,191 @@
+CREATE TABLE song (
+	ismn			 BIGSERIAL,
+	title			 VARCHAR(120) NOT NULL,
+	release_date		 DATE NOT NULL,
+	genre			 VARCHAR(120) NOT NULL,
+	publisher_publisher_id	 BIGINT NOT NULL,
+	artist_slayfy_user_user_id BIGINT NOT NULL,
+	PRIMARY KEY(ismn)
+);
+
+CREATE TABLE album (
+	album_id			 BIGSERIAL,
+	title			 VARCHAR(120) NOT NULL,
+	release_date		 DATE NOT NULL,
+	artist_slayfy_user_user_id BIGINT NOT NULL,
+	publisher_publisher_id	 BIGINT NOT NULL,
+	PRIMARY KEY(album_id)
+);
+
+CREATE TABLE slayfy_user (
+	user_id	 BIGSERIAL,
+	mail		 VARCHAR(120) NOT NULL,
+	password	 VARCHAR(120) NOT NULL,
+	username	 VARCHAR(120) NOT NULL,
+	admin_permit	 BOOL NOT NULL,
+	artist_permit BOOL NOT NULL,
+	PRIMARY KEY(user_id)
+);
+
+CREATE TABLE consumer (
+	is_premium		 BOOL NOT NULL,
+	slayfy_user_user_id BIGINT,
+	PRIMARY KEY(slayfy_user_user_id)
+);
+
+CREATE TABLE artist (
+	artistic_name	 VARCHAR(120) NOT NULL,
+	genre		 VARCHAR(120) NOT NULL,
+	slayfy_user_user_id BIGINT,
+	PRIMARY KEY(slayfy_user_user_id)
+);
+
+CREATE TABLE admin (
+	employment_date	 DATE NOT NULL,
+	sal		 FLOAT(8) NOT NULL,
+	slayfy_user_user_id BIGINT,
+	PRIMARY KEY(slayfy_user_user_id)
+);
+
+CREATE TABLE card (
+	card_id			 BIGINT,
+	expiration_date		 DATE NOT NULL,
+	original_value		 FLOAT(8) NOT NULL,
+	balance			 FLOAT(8) NOT NULL,
+	admin_slayfy_user_user_id BIGINT NOT NULL,
+	PRIMARY KEY(card_id)
+);
+
+CREATE TABLE subscription (
+	subs_start			 TIMESTAMP NOT NULL,
+	subs_end			 TIMESTAMP NOT NULL,
+	consumer_slayfy_user_user_id BIGINT,
+	subscription_plans_plan_id	 BIGINT NOT NULL,
+	PRIMARY KEY(subs_start,consumer_slayfy_user_user_id)
+);
+
+CREATE TABLE comment (
+	content			 TEXT NOT NULL,
+	rating			 SMALLINT,
+	comment_time		 TIMESTAMP NOT NULL,
+	comment_id			 BIGSERIAL,
+	song_ismn			 BIGINT NOT NULL,
+	consumer_slayfy_user_user_id BIGINT NOT NULL,
+	PRIMARY KEY(comment_id)
+);
+
+CREATE TABLE playlist (
+	playlist_id			 BIGSERIAL,
+	title			 VARCHAR(512) NOT NULL,
+	by_system			 BOOL NOT NULL,
+	public			 BOOL NOT NULL,
+	description			 VARCHAR(200),
+	creation_date		 DATE NOT NULL,
+	consumer_slayfy_user_user_id BIGINT NOT NULL,
+	PRIMARY KEY(playlist_id)
+);
+
+CREATE TABLE listening_history (
+	listening_time		 TIMESTAMP NOT NULL,
+	consumer_slayfy_user_user_id BIGINT,
+	song_ismn			 BIGINT NOT NULL,
+	PRIMARY KEY(listening_time,consumer_slayfy_user_user_id)
+);
+
+CREATE TABLE publisher (
+	publisher_id BIGSERIAL,
+	name	 VARCHAR(512) NOT NULL,
+	phone_number BIGINT,
+	address	 VARCHAR(200),
+	PRIMARY KEY(publisher_id)
+);
+
+CREATE TABLE songs_in_albuns (
+	association_id BIGINT,
+	album_order	 INTEGER NOT NULL,
+	song_ismn	 BIGINT NOT NULL,
+	album_album_id BIGINT NOT NULL,
+	PRIMARY KEY(association_id)
+);
+
+CREATE TABLE subscription_plans (
+	plan_id	 BIGSERIAL,
+	duration INTEGER NOT NULL,
+	price	 FLOAT(8) NOT NULL,
+	PRIMARY KEY(plan_id)
+);
+
+CREATE TABLE authentication (
+	token		 VARCHAR(512),
+	slayfy_user_user_id BIGINT,
+	PRIMARY KEY(token,slayfy_user_user_id)
+);
+
+CREATE TABLE song_playlist (
+	song_ismn		 BIGINT,
+	playlist_playlist_id BIGINT,
+	PRIMARY KEY(song_ismn,playlist_playlist_id)
+);
+
+CREATE TABLE subscription_card (
+	subscription_subs_start			 TIMESTAMP,
+	subscription_consumer_slayfy_user_user_id BIGINT,
+	card_card_id				 BIGINT,
+	PRIMARY KEY(subscription_subs_start,subscription_consumer_slayfy_user_user_id,card_card_id)
+);
+
+CREATE TABLE consumer_card (
+	consumer_slayfy_user_user_id BIGINT NOT NULL,
+	card_card_id		 BIGINT,
+	PRIMARY KEY(card_card_id)
+);
+
+CREATE TABLE artist_song (
+	artist_slayfy_user_user_id BIGINT,
+	song_ismn			 BIGINT,
+	PRIMARY KEY(artist_slayfy_user_user_id,song_ismn)
+);
+
+CREATE TABLE comment_comment (
+	comment_comment_id	 BIGINT,
+	comment_comment_id1 BIGINT NOT NULL,
+	PRIMARY KEY(comment_comment_id)
+);
+
+ALTER TABLE song ADD CONSTRAINT song_fk1 FOREIGN KEY (publisher_publisher_id) REFERENCES publisher(publisher_id);
+ALTER TABLE song ADD CONSTRAINT song_fk2 FOREIGN KEY (artist_slayfy_user_user_id) REFERENCES artist(slayfy_user_user_id);
+ALTER TABLE album ADD CONSTRAINT album_fk1 FOREIGN KEY (artist_slayfy_user_user_id) REFERENCES artist(slayfy_user_user_id);
+ALTER TABLE album ADD CONSTRAINT album_fk2 FOREIGN KEY (publisher_publisher_id) REFERENCES publisher(publisher_id);
+ALTER TABLE slayfy_user ADD UNIQUE (mail, username);
+ALTER TABLE consumer ADD CONSTRAINT consumer_fk1 FOREIGN KEY (slayfy_user_user_id) REFERENCES slayfy_user(user_id);
+ALTER TABLE artist ADD CONSTRAINT artist_fk1 FOREIGN KEY (slayfy_user_user_id) REFERENCES slayfy_user(user_id);
+ALTER TABLE admin ADD CONSTRAINT admin_fk1 FOREIGN KEY (slayfy_user_user_id) REFERENCES slayfy_user(user_id);
+ALTER TABLE admin ADD CONSTRAINT sal_positive CHECK (sal > 0);
+ALTER TABLE card ADD CONSTRAINT card_fk1 FOREIGN KEY (admin_slayfy_user_user_id) REFERENCES admin(slayfy_user_user_id);
+ALTER TABLE card ADD CONSTRAINT values CHECK (original_value = 10 OR original_value = 25 OR original_value = 50);
+ALTER TABLE card ADD CONSTRAINT balance_positive CHECK (balance >= 0);
+ALTER TABLE card ADD CONSTRAINT constraint_2 CHECK (card_id >= 1000000000000000 AND card_id <= 9999999999999999);
+ALTER TABLE subscription ADD CONSTRAINT subscription_fk1 FOREIGN KEY (consumer_slayfy_user_user_id) REFERENCES consumer(slayfy_user_user_id);
+ALTER TABLE subscription ADD CONSTRAINT subscription_fk2 FOREIGN KEY (subscription_plans_plan_id) REFERENCES subscription_plans(plan_id);
+ALTER TABLE comment ADD CONSTRAINT comment_fk1 FOREIGN KEY (song_ismn) REFERENCES song(ismn);
+ALTER TABLE comment ADD CONSTRAINT comment_fk2 FOREIGN KEY (consumer_slayfy_user_user_id) REFERENCES consumer(slayfy_user_user_id);
+ALTER TABLE comment ADD CONSTRAINT rating_limit CHECK (rating >= 0 AND rating <= 5);
+ALTER TABLE playlist ADD CONSTRAINT playlist_fk1 FOREIGN KEY (consumer_slayfy_user_user_id) REFERENCES consumer(slayfy_user_user_id);
+ALTER TABLE listening_history ADD CONSTRAINT listening_history_fk1 FOREIGN KEY (consumer_slayfy_user_user_id) REFERENCES consumer(slayfy_user_user_id);
+ALTER TABLE listening_history ADD CONSTRAINT listening_history_fk2 FOREIGN KEY (song_ismn) REFERENCES song(ismn);
+ALTER TABLE songs_in_albuns ADD UNIQUE (song_ismn);
+ALTER TABLE songs_in_albuns ADD CONSTRAINT songs_in_albuns_fk1 FOREIGN KEY (song_ismn) REFERENCES song(ismn);
+ALTER TABLE songs_in_albuns ADD CONSTRAINT songs_in_albuns_fk2 FOREIGN KEY (album_album_id) REFERENCES album(album_id);
+ALTER TABLE subscription_plans ADD CONSTRAINT dur_constraint CHECK (duration > 0);
+ALTER TABLE authentication ADD CONSTRAINT authentication_fk1 FOREIGN KEY (slayfy_user_user_id) REFERENCES slayfy_user(user_id);
+ALTER TABLE song_playlist ADD CONSTRAINT song_playlist_fk1 FOREIGN KEY (song_ismn) REFERENCES song(ismn);
+ALTER TABLE song_playlist ADD CONSTRAINT song_playlist_fk2 FOREIGN KEY (playlist_playlist_id) REFERENCES playlist(playlist_id);
+ALTER TABLE subscription_card ADD CONSTRAINT subscription_card_fk1 FOREIGN KEY (subscription_subs_start, subscription_consumer_slayfy_user_user_id) REFERENCES subscription(subs_start, consumer_slayfy_user_user_id);
+ALTER TABLE subscription_card ADD CONSTRAINT subscription_card_fk2 FOREIGN KEY (card_card_id) REFERENCES card(card_id);
+ALTER TABLE consumer_card ADD CONSTRAINT consumer_card_fk1 FOREIGN KEY (consumer_slayfy_user_user_id) REFERENCES consumer(slayfy_user_user_id);
+ALTER TABLE consumer_card ADD CONSTRAINT consumer_card_fk2 FOREIGN KEY (card_card_id) REFERENCES card(card_id);
+ALTER TABLE artist_song ADD CONSTRAINT artist_song_fk1 FOREIGN KEY (artist_slayfy_user_user_id) REFERENCES artist(slayfy_user_user_id);
+ALTER TABLE artist_song ADD CONSTRAINT artist_song_fk2 FOREIGN KEY (song_ismn) REFERENCES song(ismn);
+ALTER TABLE comment_comment ADD CONSTRAINT comment_comment_fk1 FOREIGN KEY (comment_comment_id) REFERENCES comment(comment_id);
+ALTER TABLE comment_comment ADD CONSTRAINT comment_comment_fk2 FOREIGN KEY (comment_comment_id1) REFERENCES comment(comment_id);
+

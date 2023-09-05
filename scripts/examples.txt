@@ -1,0 +1,164 @@
+INSERT into slayfy_user(mail, password, username, admin_permit, artist_permit)
+VALUES ('god@gmail.com', '1234', 'God', True, False);
+
+INSERT into admin VALUES ('2023-05-18', 2000, 1);
+
+INSERT into slayfy_user(mail, password, username, admin_permit, artist_permit)
+VALUES('catarina@gmail.com', '1234', 'catarina', False, False);
+
+INSERT into consumer VALUES(False, 2);
+
+INSERT into slayfy_user(mail, password, username, admin_permit, artist_permit)
+VALUES ('ze@gmail.com', '1234', 'ze', False, False);
+
+INSERT into consumer VALUES(False, 3);
+
+INSERT into slayfy_user(mail, password, username, admin_permit, artist_permit)
+VALUES ('diogo@gmail.com', '1234', 'diogo', False, False);
+
+INSERT into consumer VALUES(False, 4);
+
+INSERT into slayfy_user(mail, password, username, admin_permit, artist_permit)
+VALUES('madonna@gmail.com', '1234', 'madonna', False, True);
+
+INSERT into artist VALUES('Madonna', 'pop', 5);
+
+INSERT into slayfy_user(mail, password, username, admin_permit, artist_permit)
+VALUES('mitski@gmail.com', '1234', 'mitski', False, True);
+
+INSERT into artist VALUES('Mitski', 'indie rock', 6);
+
+INSERT into slayfy_user(mail, password, username, admin_permit, artist_permit)
+VALUES('national@gmail.com', '1234', 'the_national', False, True);
+
+INSERT into artist VALUES('The National', 'folk rock', 7);
+
+INSERT into publisher(name, phone_number, address)
+VALUES('ABC_publishing', 999000999, 'Main Street, L.A.');
+
+INSERT into song(title, release_date, genre, publisher_publisher_id, artist_slayfy_user_user_id)
+VALUES('Fireworks', '2000-04-01', 'alternative rock', 1, 6);
+
+INSERT into song(title, release_date, genre, publisher_publisher_id, artist_slayfy_user_user_id)
+VALUES('Townie', '2000-04-01', 'country', 1, 6);
+
+INSERT into song(title, release_date, genre, publisher_publisher_id, artist_slayfy_user_user_id)
+VALUES('Brand New City', '2000-04-01', 'alternative rock', 1, 6);
+
+INSERT into song(title, release_date, genre, publisher_publisher_id, artist_slayfy_user_user_id)
+VALUES('A Texas Moment', '2000-04-01', 'country', 1, 6);
+
+INSERT into song(title, release_date, genre, publisher_publisher_id, artist_slayfy_user_user_id)
+VALUES('Texas-man', '2000-04-01', 'alternative rock', 1, 6);
+
+INSERT into artist_song VALUES(5, 4);
+INSERT into artist_song VALUES(5, 5);
+INSERT into artist_song VALUES(7, 5);
+
+INSERT into song(title, release_date, genre, publisher_publisher_id, artist_slayfy_user_user_id)
+VALUES('Vogue', '2000-04-01', 'pop', 1, 5);
+
+INSERT into song(title, release_date, genre, publisher_publisher_id, artist_slayfy_user_user_id)
+VALUES('Crazy for You', '2000-04-01', 'pop', 1, 5);
+
+INSERT into song(title, release_date, genre, publisher_publisher_id, artist_slayfy_user_user_id)
+VALUES('Hung Up', '2000-04-01', 'pop', 1, 5);
+
+INSERT into song(title, release_date, genre, publisher_publisher_id, artist_slayfy_user_user_id)
+VALUES('LOVELY TEXAS', '2000-04-01', 'pop', 1, 5);
+
+INSERT into artist_song VALUES(7, 9);
+
+INSERT into song(title, release_date, genre, publisher_publisher_id, artist_slayfy_user_user_id)
+VALUES('Terrible Love', '2000-04-01', 'folk', 1, 7);
+
+INSERT into song(title, release_date, genre, publisher_publisher_id, artist_slayfy_user_user_id)
+VALUES('The System Only Dreams in Total Darkness', '2000-04-01', 'alternative rock', 1, 7);
+
+INSERT into song(title, release_date, genre, publisher_publisher_id, artist_slayfy_user_user_id)
+VALUES('Mr. November', '2000-04-01', 'rock', 1, 7);
+
+INSERT into artist_song VALUES(6, 12);
+
+INSERT into album(title, release_date, artist_slayfy_user_user_id, publisher_publisher_id)
+VALUES('Mitski Debut', '2001-07-01', 6, 1);
+
+INSERT into album(title, release_date, artist_slayfy_user_user_id, publisher_publisher_id)
+VALUES('MADONNA', '2001-07-01', 5, 1);
+
+INSERT into songs_in_albuns VALUES(1, 1, 1, 1);
+INSERT into songs_in_albuns VALUES(2, 2, 2, 1);
+INSERT into songs_in_albuns VALUES(3, 3, 3, 1);
+INSERT into songs_in_albuns VALUES(4, 4, 4, 1);
+INSERT into songs_in_albuns VALUES(5, 5, 5, 1);
+INSERT into songs_in_albuns VALUES(6, 6, 12, 1);
+
+INSERT into songs_in_albuns VALUES(7, 1, 6, 2);
+INSERT into songs_in_albuns VALUES(8, 2, 8, 2);
+
+INSERT into card VALUES(1000000000000001, '2023-06-19', 10, 10, 1);
+INSERT into card VALUES(1000000000000002, '2023-06-19', 25, 25, 1);
+INSERT into card VALUES(1000000000000003, '2023-06-19', 25, 25, 1);
+INSERT into card VALUES(1000000000000004, '2023-06-19', 50, 50, 1);
+
+INSERT into comment(content, rating, comment_time, song_ismn, consumer_slayfy_user_user_id)
+VALUES('This is the best song Ive ever heard!', 5, CURRENT_TIMESTAMP, 3, 2);
+
+INSERT into comment(content, comment_time, song_ismn, consumer_slayfy_user_user_id)
+VALUES('I agree!', CURRENT_TIMESTAMP, 3, 4);
+
+INSERT into comment_comment VALUES(2, 1);
+
+
+INSERT into playlist(title, by_system, public, creation_date, consumer_slayfy_user_user_id)
+VALUES('Top 10 for catarina', True, False, '2023-05-18', 2);
+INSERT into playlist(title, by_system, public, creation_date, consumer_slayfy_user_user_id)
+VALUES('Top 10 for ze', True, False, '2023-05-18', 3);
+INSERT into playlist(title, by_system, public, creation_date, consumer_slayfy_user_user_id)
+VALUES('Top 10 for diogo', True, False, '2023-05-18', 4);
+
+
+
+INSERT into playlist(title, by_system, public, description, creation_date, consumer_slayfy_user_user_id)
+VALUES ('Mitskis Best', False, True, 'my favourite mitski songs', '2023-05-18', 2);
+
+INSERT into song_playlist VALUES(1, 4);
+INSERT into song_playlist VALUES(3, 4);
+INSERT into song_playlist VALUES(5, 4);
+
+INSERT into listening_history VALUES('2023-05-18 11:24:00', 2, 3);
+INSERT into listening_history VALUES('2023-05-18 11:24:30', 2, 3);
+INSERT into listening_history VALUES('2023-05-18 11:25:00', 2, 3);
+INSERT into listening_history VALUES('2023-05-19 11:24:00', 2, 3);
+INSERT into listening_history VALUES('2023-05-18 12:24:00', 2, 6);
+INSERT into listening_history VALUES('2023-05-19 11:34:00', 2, 3);
+INSERT into listening_history VALUES('2023-05-10 11:24:00', 2, 9);
+INSERT into listening_history VALUES('2023-05-12 11:24:00', 2, 9);
+INSERT into listening_history VALUES('2023-05-19 11:26:00', 2, 10);
+INSERT into listening_history VALUES('2023-05-18 11:14:00', 2, 12);
+
+INSERT into listening_history 
+VALUES('2023-05-18 12:00:00', 3, 6);
+INSERT into listening_history 
+VALUES('2023-04-02 12:00:00', 3, 2);
+INSERT into listening_history 
+VALUES('2023-03-01 9:00:00', 3, 11);
+INSERT into listening_history VALUES('2023-05-18 11:24:00', 3, 9);
+
+INSERT into listening_history 
+VALUES('2022-01-01 9:00:00', 4, 10);
+INSERT into listening_history 
+VALUES('2021-12-12 9:00:00', 4, 11);
+
+INSERT INTO subscription_plans(duration, price) VALUES(1, 7);
+INSERT INTO subscription_plans(duration, price) VALUES(3, 21);
+INSERT INTO subscription_plans(duration, price) VALUES(6, 42);
+
+
+
+
+
+
+
+
+
